@@ -5,10 +5,14 @@ import dependencies.AndroidTestDependencies
 import dependencies.Java
 import dependencies.SupportDependencies
 import dependencies.TestDependencies
+import dependencies.AnnotationProcessing
 
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-kapt'
+    //id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -41,21 +45,30 @@ android {
 
 dependencies {
 
-//    implementation 'androidx.core:core-ktx:1.7.0'
-//    implementation 'androidx.appcompat:appcompat:1.4.1'
-//    implementation 'com.google.android.material:material:1.5.0'
-//    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-//    testImplementation 'junit:junit:4.13.2'
-//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
+    //Dependencies
     implementation Dependencies.ktx
+    implementation Dependencies.hilt
+    implementation Dependencies.firebase_firestore
+//    implementation Dependencies.firebase_auth
+//    implementation Dependencies.firebase_analytics
+    implementation Dependencies.firebase_crashlytics
+    implementation Dependencies.kotlin_coroutines
+    implementation Dependencies.kotlin_coroutines_android
+    implementation Dependencies.kotlin_coroutines_play_services
+
+
+    //SupportDependencies
     implementation SupportDependencies.appcompat
     implementation SupportDependencies.material_design
     implementation SupportDependencies.constraintlayout
     implementation SupportDependencies.legacy_support
+    //TestDependencies
     implementation TestDependencies.junit4
+
+
+    //AnnotationProcessing
+    kapt AnnotationProcessing.hilt_compiler
 
 
 }
