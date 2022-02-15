@@ -1,19 +1,27 @@
+import dependencies.Dependencies
+import dependencies.Versions
+import dependencies.Application
+import dependencies.AndroidTestDependencies
+import dependencies.Java
+import dependencies.SupportDependencies
+import dependencies.TestDependencies
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
 
 android {
-    compileSdk 31
+    compileSdk Versions.compilesdk
 
     defaultConfig {
-        applicationId "com.example.cleannotes"
-        minSdk 21
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        applicationId Application.id
+        minSdk Versions.minsdk
+        targetSdk Versions.targetsdk
+        versionCode Application.version_code
+        versionName Application.version_name
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner AndroidTestDependencies.instrumentation_runner
     }
 
     buildTypes {
@@ -23,22 +31,31 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility Java.java_version
+        targetCompatibility Java.java_version
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = Java.java_version
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+//    implementation 'androidx.core:core-ktx:1.7.0'
+//    implementation 'androidx.appcompat:appcompat:1.4.1'
+//    implementation 'com.google.android.material:material:1.5.0'
+//    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation Dependencies.ktx
+    implementation SupportDependencies.appcompat
+    implementation SupportDependencies.material_design
+    implementation SupportDependencies.constraintlayout
+    implementation SupportDependencies.legacy_support
+    implementation TestDependencies.junit4
+
+
 }
