@@ -1,11 +1,12 @@
-import dependencies.Dependencies
-import dependencies.Versions
-import dependencies.Application
-import dependencies.AndroidTestDependencies
-import dependencies.Java
-import dependencies.SupportDependencies
-import dependencies.TestDependencies
-import dependencies.AnnotationProcessing
+//import dependencies.Dependencies
+//import dependencies.Versions
+//import dependencies.Application
+//import dependencies.AndroidTestDependencies
+//import dependencies.Java
+//import dependencies.SupportDependencies
+//import dependencies.TestDependencies
+//import dependencies.AnnotationProcessing
+
 
 plugins {
     id 'com.android.application'
@@ -16,16 +17,28 @@ plugins {
 }
 
 android {
-    compileSdk Versions.compilesdk
+//    compileSdk Versions.compilesdk
+//
+//    defaultConfig {
+//        applicationId Application.id
+//        minSdk Versions.minsdk
+//        targetSdk Versions.targetsdk
+//        versionCode Application.version_code
+//        versionName Application.version_name
+//
+//        testInstrumentationRunner AndroidTestDependencies.instrumentation_runner
+//    }
+
+    compileSdk 31
 
     defaultConfig {
-        applicationId Application.id
-        minSdk Versions.minsdk
-        targetSdk Versions.targetsdk
-        versionCode Application.version_code
-        versionName Application.version_name
+        applicationId "com.example.cleannotes"
+        minSdk 21
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
 
-        testInstrumentationRunner AndroidTestDependencies.instrumentation_runner
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -35,40 +48,70 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility Java.java_version
-        targetCompatibility Java.java_version
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = Java.java_version
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+}
+
+kapt {
+    correctErrorTypes true
 }
 
 dependencies {
 
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    //Dependencies
-    implementation Dependencies.ktx
-    implementation Dependencies.hilt
-    implementation Dependencies.firebase_firestore
-//    implementation Dependencies.firebase_auth
-//    implementation Dependencies.firebase_analytics
-    implementation Dependencies.firebase_crashlytics
-    implementation Dependencies.kotlin_coroutines
-    implementation Dependencies.kotlin_coroutines_android
-    implementation Dependencies.kotlin_coroutines_play_services
+    //hilt
+    implementation "com.google.dagger:hilt-android:2.39.1"
+    kapt "com.google.dagger:hilt-compiler:2.39.1"
+
+    //firebase
+    implementation "com.google.firebase:firebase-firestore:24.0.1"
+    //implementation 'com.google.firebase:firebase-auth:21.0.1'
+    //implementation 'com.google.firebase:firebase-analytics:20.1.0'
+    implementation "com.google.firebase:firebase-crashlytics:18.2.8"
 
 
-    //SupportDependencies
-    implementation SupportDependencies.appcompat
-    implementation SupportDependencies.material_design
-    implementation SupportDependencies.constraintlayout
-    implementation SupportDependencies.legacy_support
-    //TestDependencies
-    implementation TestDependencies.junit4
+    //coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.3.2"
 
 
-    //AnnotationProcessing
-    kapt AnnotationProcessing.hilt_compiler
+//    //Dependencies
+//    implementation Dependencies.ktx
+//    implementation Dependencies.hilt
+//    implementation Dependencies.firebase_firestore
+////    implementation Dependencies.firebase_auth
+////    implementation Dependencies.firebase_analytics
+//    implementation Dependencies.firebase_crashlytics
+//    implementation Dependencies.kotlin_coroutines
+//    implementation Dependencies.kotlin_coroutines_android
+//    implementation Dependencies.kotlin_coroutines_play_services
+//
+//
+//    //SupportDependencies
+//    implementation SupportDependencies.appcompat
+//    implementation SupportDependencies.material_design
+//    implementation SupportDependencies.constraintlayout
+//    implementation SupportDependencies.legacy_support
+//    //TestDependencies
+//    implementation TestDependencies.junit4
+//
+//
+//    //AnnotationProcessing
+//    kapt AnnotationProcessing.hilt_compiler
 
 
 }
