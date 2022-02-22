@@ -10,7 +10,11 @@ import com.example.cleannotes.business.data.network.NetworkErrors.NETWORK_ERROR_
 import com.example.cleannotes.business.data.network.NetworkErrors.NETWORK_ERROR_UNKNOWN
 import com.example.cleannotes.business.data.util.GenericErrors.ERROR_UNKNOWN
 import com.example.cleannotes.business.domain.util.cLog
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpException
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
+import retrofit2.HttpException
 import java.io.IOException
 
 suspend fun <T> safeApiCall(

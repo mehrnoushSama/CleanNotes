@@ -7,10 +7,16 @@ interface NoteCacheDataSource {
     suspend fun insertNote(note: Note): Long
     suspend fun deleteNote(primary: String): Int
     suspend fun deleteNotes(note: List<Note>): Int
-    suspend fun updateNote(primary: String, newTitle: String, newBody: String): Int
+    suspend fun updateNote(
+        primaryKey: String,
+        newTitle: String,
+        newBody: String?,
+        timestamp: String?
+    ): Int
+
     suspend fun searchNote(query: String, filterAndOrder: String, page: Int): List<Note>
-    suspend fun searchNoteById(primary: String): Int
+    suspend fun searchNoteById(primary: String):  Note?
     suspend fun getNumNotes(): Int
-    suspend fun insertNotes(note: List<Note>): Long
+    suspend fun insertNotes(note: List<Note>): LongArray
 
 }
