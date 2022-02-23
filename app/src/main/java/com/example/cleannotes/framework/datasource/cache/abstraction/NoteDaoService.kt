@@ -4,11 +4,28 @@ import com.example.cleannotes.business.domain.model.Note
 import com.example.cleannotes.framework.datasource.cache.database.NOTE_PAGINATION_PAGE_SIZE
 
 interface NoteDaoService {
+
     suspend fun insertNote(note: Note): Long
-    suspend fun deleteNote(primary: String): Int
-    suspend fun deleteNotes(note: List<Note>): Int
-    suspend fun updateNote(primary: String, newTitle: String, newBody: String): Int
+
+    suspend fun insertNotes(notes: List<Note>): LongArray
+
+    suspend fun searchNoteById(id: String): Note?
+
+    suspend fun updateNote(
+        primaryKey: String,
+        title: String,
+        body: String?,
+        timestamp: String?
+    ): Int
+
+    suspend fun deleteNote(primaryKey: String): Int
+
+    suspend fun deleteNotes(notes: List<Note>): Int
+
     suspend fun searchNotes(): List<Note>
+
+    suspend fun getAllNotes(): List<Note>
+
     suspend fun searchNotesOrderByDateDESC(
         query: String,
         page: Int,
@@ -33,10 +50,7 @@ interface NoteDaoService {
         pageSize: Int = NOTE_PAGINATION_PAGE_SIZE
     ): List<Note>
 
-    suspend fun searchNoteById(primary: String): Int
     suspend fun getNumNotes(): Int
-    suspend fun insertNotes(note: List<Note>): Long
-
 
     suspend fun returnOrderedQuery(
         query: String,

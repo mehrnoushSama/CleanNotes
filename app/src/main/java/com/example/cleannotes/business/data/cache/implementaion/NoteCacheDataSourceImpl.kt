@@ -16,16 +16,28 @@ class NoteCacheDataSourceImpl @Inject constructor(
 
     override suspend fun deleteNotes(notes: List<Note>): Int = noteDaoService.deleteNotes(notes)
 
-    override suspend fun updateNote(primary: String, newTitle: String, newBody: String): Int =
-        noteDaoService.updateNote(primary, newTitle, newBody)
+    override suspend fun updateNote(
+        primaryKey: String,
+        newTitle: String,
+        newBody: String?,
+        timestamp: String?
+    ): Int {
+        return noteDaoService.updateNote(
+            primaryKey,
+            newTitle,
+            newBody,
+            timestamp
+        )
+    }
 
     override suspend fun searchNote(query: String, filterAndOrder: String, page: Int): List<Note> =
         noteDaoService.searchNotes()
 
-    override suspend fun searchNoteById(primary: String): Int =
+    override suspend fun searchNoteById(primary: String): Note? =
         noteDaoService.searchNoteById(primary)
 
     override suspend fun getNumNotes(): Int = noteDaoService.getNumNotes()
 
-    override suspend fun insertNotes(notes: List<Note>): Long = noteDaoService.insertNotes(notes)
+    override suspend fun insertNotes(notes: List<Note>): LongArray =
+        noteDaoService.insertNotes(notes)
 }

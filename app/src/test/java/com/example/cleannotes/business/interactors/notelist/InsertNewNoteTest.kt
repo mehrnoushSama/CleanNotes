@@ -11,12 +11,12 @@ import com.example.cleannotes.business.interactors.notelist.InsertNewNote.Compan
 import com.example.cleannotes.di.DependencyContainer
 import com.example.cleannotes.framework.presentation.notelist.state.NoteListStateEvent
 import com.example.cleannotes.framework.presentation.notelist.state.NoteListViewState
-import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.runBlocking
-import org.junit.Test
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Test
 import java.util.*
 
 @InternalCoroutinesApi
@@ -38,7 +38,7 @@ class InsertNewNoteTest {
         noteNetworkDataSource = dependencyContainer.noteNetworkDataSource
         noteFactory = dependencyContainer.noteFactory
         insertNewNote = InsertNewNote(
-            noteCacheDataSource = noteCacheDataSource,
+            noteCach eDataSource = noteCacheDataSource,
             noteNetworkDataSource = noteNetworkDataSource,
             noteFactory = noteFactory
         )
@@ -56,7 +56,7 @@ class InsertNewNoteTest {
             id = newNote.id,
             title = newNote.title,
             stateEvent = NoteListStateEvent.InsertNewNoteEvent(newNote.title)
-        ).collect(object: FlowCollector<DataState<NoteListViewState>?> {
+        ).collect(object : FlowCollector<DataState<NoteListViewState>?> {
             override suspend fun emit(value: DataState<NoteListViewState>?) {
                 assertEquals(
                     value?.stateMessage?.response?.message,
@@ -87,7 +87,7 @@ class InsertNewNoteTest {
             id = newNote.id,
             title = newNote.title,
             stateEvent = NoteListStateEvent.InsertNewNoteEvent(newNote.title)
-        ).collect(object: FlowCollector<DataState<NoteListViewState>?>{
+        ).collect(object : FlowCollector<DataState<NoteListViewState>?> {
             override suspend fun emit(value: DataState<NoteListViewState>?) {
                 assertEquals(
                     value?.stateMessage?.response?.message,
@@ -118,7 +118,7 @@ class InsertNewNoteTest {
             id = newNote.id,
             title = newNote.title,
             stateEvent = NoteListStateEvent.InsertNewNoteEvent(newNote.title)
-        ).collect(object: FlowCollector<DataState<NoteListViewState>?>{
+        ).collect(object : FlowCollector<DataState<NoteListViewState>?> {
             override suspend fun emit(value: DataState<NoteListViewState>?) {
                 assert(
                     value?.stateMessage?.response?.message
