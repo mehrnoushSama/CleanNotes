@@ -40,7 +40,7 @@ class SearchNotes(private val noteCacheDataSource: NoteCacheDataSource) {
                 var message: String? = SEARCH_NOTES_SUCCESS
                 var uiComponentType: UIComponentType = UIComponentType.None()
                 if (resultObj.size == 0) {
-                    message = SEARCH_NOTES_NO_MATCHING_RESULTS,
+                    message = SEARCH_NOTES_NO_MATCHING_RESULTS
                     uiComponentType = UIComponentType.Toast()
                 }
 
